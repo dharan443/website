@@ -4,91 +4,113 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Case Study — Residential VoIP System Analysis (BSNL)</title>
-  <style>
-    :root {
-      --primary: #0f4c81;
-      --secondary: #1e3a5f;
-      --muted: #6b7280;
-      --bg: linear-gradient(to bottom right, #f3f6fa, #e0ebf7);
-      --accent: #4f8ef7;
-      --note-bg: #fff8e1;
-      --note-border: #ffcc00;
-      --shadow: rgba(0,0,0,0.08);
-    }
+ <style>
+  :root {
+    --primary:#4f8ef7;
+    --secondary:#1e3a5f;
+    --muted:#a0a0a0;
+    --bg:#0b1520;            /* Dark background */
+    --card-bg:#1b2735;       /* Card/container background */
+    --accent:#4f8ef7;
+    --note-bg:#2a3647;
+    --note-border:#ffcc00;
+  }
 
-    html, body {
-      margin:0;
-      padding:0;
-      width:100%;
-      height:auto;
-      overflow-y:auto;
-      -webkit-overflow-scrolling: touch;
-      touch-action: pan-y;
-      font-family:'Segoe UI',Roboto,Arial,sans-serif;
-      line-height:1.7;
-      color:#0b2440;
-      background: var(--bg);
-      text-align:justify;
-    }
+  html, body {
+    margin:0;
+    padding:0;
+    width:100%;
+    height:auto;
+    overflow-y:auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+    font-family:'Segoe UI',Roboto,Arial,sans-serif;
+    line-height:1.7;
+    color:#e4e8f0;            /* Light text */
+    background:var(--bg);
+    text-align:justify;
+  }
 
-    .container {
-      max-width:960px;
-      margin:50px auto;
-      padding:40px;
-      background:#fff;
-      border-radius:20px;
-      box-shadow:0 12px 32px var(--shadow);
-      border-top:6px solid var(--primary);
-      transition: transform 0.3s ease;
-    }
-    .container:hover { transform: translateY(-3px); }
+  .container {
+    max-width:960px;
+    margin:40px auto;
+    padding:32px;
+    background:var(--card-bg); /* Dark card background */
+    border-radius:16px;
+    box-shadow:0 8px 32px rgba(0,0,0,0.5);
+    border-top:4px solid var(--primary);
+  }
 
-    header {display:flex;gap:16px;align-items:center; flex-wrap:wrap;}
-    .badge {background:var(--primary);color:#fff;padding:10px 14px;border-radius:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;}
-    h1 {
-      margin:8px 0 0;
-      font-size:28px;
-      font-weight:700;
-      background:linear-gradient(90deg,var(--primary),var(--accent));
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      letter-spacing:0.5px;
-    }
-    .meta {color:var(--muted);font-size:14px;margin-top:6px;}
+  h1 {
+    font-size:26px;
+    font-weight:700;
+    background:linear-gradient(90deg,var(--primary),var(--accent));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
 
-    section {margin-top:32px; padding-bottom:14px; border-bottom:1px solid #e0e0e0;}
-    h2 {font-size:22px; margin:0 0 14px; color:var(--primary); position:relative;}
-    h2::after {content:''; position:absolute; left:0; bottom:-4px; height:4px; width:60px; background:var(--accent); border-radius:2px;}
+  h2 {
+    font-size:20px;
+    margin:0 0 12px;
+    color:var(--accent);
+    position:relative;
+  }
 
-    p, li {margin:8px 0;color:#0b2440; text-align:justify;}
-    ul {padding-left:24px;}
-    li {margin:6px 0;}
+  h2::after {
+    content:'';
+    position:absolute;
+    left:0;
+    bottom:-4px;
+    height:3px;
+    width:60px;
+    background:var(--primary);
+    border-radius:2px;
+  }
 
-    pre.diagram {background:#0f1724;color:#fff;padding:18px;border-radius:12px;overflow:auto;font-size:14px; box-shadow: 0 4px 12px var(--shadow);}
+  p, li {
+    margin:8px 0;
+    color:#e4e8f0;
+  }
 
-    .cta {display:inline-block;margin-top:20px;padding:14px 28px;background: var(--accent);color:#fff;border-radius:16px;text-decoration:none;font-weight:600;transition:0.3s; box-shadow: 0 4px 12px var(--shadow);}
-    .cta:hover {background:var(--primary); transform: scale(1.05);}
+  pre.diagram {
+    background:#0f1724;
+    color:#c7d2fe;
+    padding:16px;
+    border-radius:10px;
+    overflow:auto;
+    font-size:14px;
+  }
 
-    .note {background:var(--note-bg);border-left:5px solid var(--note-border);padding:14px;border-radius:12px;color:#6b4b00;font-size:14px;margin-top:10px; box-shadow: 0 2px 8px var(--shadow);}
+  .note {
+    background:var(--note-bg);
+    border-left:4px solid var(--note-border);
+    padding:12px;
+    border-radius:8px;
+    color:#ffecb3;
+    font-size:14px;
+    margin-top:8px;
+  }
 
-    .skills {display:flex; flex-wrap:wrap; gap:12px; margin-top:12px;}
-    .pill {background:#eef6ff; color:var(--primary); padding:8px 12px; border-radius:999px; font-weight:600; font-size:14px; box-shadow: 0 2px 6px var(--shadow);}
+  .skills .pill {
+    background:#22334a;
+    color:#fff;
+  }
 
-    iframe {border-radius:14px; border:none; box-shadow:0 6px 20px var(--shadow); width:100%; height:500px;}
+  iframe {
+    border-radius:12px;
+    border:none;
+    box-shadow:0 4px 20px rgba(0,0,0,0.6);
+    width:100%;
+    height:500px;
+  }
 
-    @media(max-width:640px){
-      .container {margin:25px;padding:25px;}
-      h1 {font-size:24px;}
-      h2 {font-size:20px;}
-      iframe {height:300px;}
-    }
+  .cta {
+    background:var(--accent);
+    color:#fff;
+  }
+  .cta:hover {background:var(--primary);}
+</style>
 
-    .video-section {text-align:center; margin:45px auto; max-width:900px; padding:0 15px;}
-    .video-section h2 {font-size:28px; margin-bottom:18px; font-weight:600; color:#0f4c81; position:static;}
-    .video-section p {margin-bottom:22px; color:#0b2440; text-align:justify; line-height:1.65;}
-    .video-container {position:relative; width:100%; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:14px; box-shadow:0 6px 16px var(--shadow); margin-bottom:20px;}
-    .video-container iframe {position:absolute; top:0; left:0; width:100%; height:100%; border:none; border-radius:14px;}
-  </style>
 </head>
 <body>
   <main class="container">
