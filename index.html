@@ -6,13 +6,14 @@
   <title>Case Study — Residential VoIP System Analysis (BSNL)</title>
   <style>
     :root {
-      --primary:#0f4c81;
-      --secondary:#1e3a5f;
-      --muted:#6b7280;
-      --bg:#f3f6fa;
-      --accent:#4f8ef7;
-      --note-bg:#fff8e1;
-      --note-border:#ffcc00;
+      --primary: #0f4c81;
+      --secondary: #1e3a5f;
+      --muted: #6b7280;
+      --bg: linear-gradient(to bottom right, #f3f6fa, #e0ebf7);
+      --accent: #4f8ef7;
+      --note-bg: #fff8e1;
+      --note-border: #ffcc00;
+      --shadow: rgba(0,0,0,0.08);
     }
 
     html, body {
@@ -20,31 +21,33 @@
       padding:0;
       width:100%;
       height:auto;
-      overflow-y:auto;                  /* allow vertical scroll */
-      -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS/Android */
-      touch-action: pan-y;              /* enable touch scrolling */
+      overflow-y:auto;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-y;
       font-family:'Segoe UI',Roboto,Arial,sans-serif;
       line-height:1.7;
       color:#0b2440;
-      background:var(--bg);
+      background: var(--bg);
       text-align:justify;
     }
 
     .container {
       max-width:960px;
-      margin:40px auto;
-      padding:32px;
+      margin:50px auto;
+      padding:40px;
       background:#fff;
-      border-radius:16px;
-      box-shadow:0 8px 32px rgba(12,20,30,0.12);
-      border-top:4px solid var(--primary);
+      border-radius:20px;
+      box-shadow:0 12px 32px var(--shadow);
+      border-top:6px solid var(--primary);
+      transition: transform 0.3s ease;
     }
+    .container:hover { transform: translateY(-3px); }
 
     header {display:flex;gap:16px;align-items:center; flex-wrap:wrap;}
-    .badge {background:var(--primary);color:#fff;padding:8px 12px;border-radius:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;}
+    .badge {background:var(--primary);color:#fff;padding:10px 14px;border-radius:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;}
     h1 {
       margin:8px 0 0;
-      font-size:26px;
+      font-size:28px;
       font-weight:700;
       background:linear-gradient(90deg,var(--primary),var(--accent));
       -webkit-background-clip:text;
@@ -53,38 +56,38 @@
     }
     .meta {color:var(--muted);font-size:14px;margin-top:6px;}
 
-    section {margin-top:28px; padding-bottom:12px; border-bottom:1px solid #e0e0e0;}
-    h2 {font-size:20px; margin:0 0 12px; color:var(--primary); position:relative;}
-    h2::after {content:''; position:absolute; left:0; bottom:-4px; height:3px; width:60px; background:var(--accent); border-radius:2px;}
+    section {margin-top:32px; padding-bottom:14px; border-bottom:1px solid #e0e0e0;}
+    h2 {font-size:22px; margin:0 0 14px; color:var(--primary); position:relative;}
+    h2::after {content:''; position:absolute; left:0; bottom:-4px; height:4px; width:60px; background:var(--accent); border-radius:2px;}
 
     p, li {margin:8px 0;color:#0b2440; text-align:justify;}
-    ul {padding-left:20px;}
+    ul {padding-left:24px;}
     li {margin:6px 0;}
 
-    pre.diagram {background:#0f1724;color:#fff;padding:16px;border-radius:10px;overflow:auto;font-size:14px;}
+    pre.diagram {background:#0f1724;color:#fff;padding:18px;border-radius:12px;overflow:auto;font-size:14px; box-shadow: 0 4px 12px var(--shadow);}
 
-    .cta {display:inline-block;margin-top:18px;padding:12px 18px;background:var(--accent);color:#fff;border-radius:12px;text-decoration:none;font-weight:600;transition:0.3s;}
-    .cta:hover {background:var(--primary);}
+    .cta {display:inline-block;margin-top:20px;padding:14px 28px;background: var(--accent);color:#fff;border-radius:16px;text-decoration:none;font-weight:600;transition:0.3s; box-shadow: 0 4px 12px var(--shadow);}
+    .cta:hover {background:var(--primary); transform: scale(1.05);}
 
-    .note {background:var(--note-bg);border-left:4px solid var(--note-border);padding:12px;border-radius:8px;color:#6b4b00;font-size:14px;margin-top:8px;}
+    .note {background:var(--note-bg);border-left:5px solid var(--note-border);padding:14px;border-radius:12px;color:#6b4b00;font-size:14px;margin-top:10px; box-shadow: 0 2px 8px var(--shadow);}
 
-    .skills {display:flex; flex-wrap:wrap; gap:10px; margin-top:8px;}
-    .pill {background:#eef6ff; color:var(--primary); padding:6px 10px; border-radius:999px; font-weight:600; font-size:14px;}
+    .skills {display:flex; flex-wrap:wrap; gap:12px; margin-top:12px;}
+    .pill {background:#eef6ff; color:var(--primary); padding:8px 12px; border-radius:999px; font-weight:600; font-size:14px; box-shadow: 0 2px 6px var(--shadow);}
 
-    iframe {border-radius:12px; border:none; box-shadow:0 4px 20px rgba(0,0,0,0.1); width:100%; height:500px;}
+    iframe {border-radius:14px; border:none; box-shadow:0 6px 20px var(--shadow); width:100%; height:500px;}
 
     @media(max-width:640px){
-      .container {margin:20px;padding:20px;}
-      h1 {font-size:22px;}
-      h2 {font-size:18px;}
+      .container {margin:25px;padding:25px;}
+      h1 {font-size:24px;}
+      h2 {font-size:20px;}
       iframe {height:300px;}
     }
 
-    .video-section {text-align:center; margin:40px auto; max-width:900px; padding:0 15px;}
-    .video-section h2 {font-size:26px; margin-bottom:15px; font-weight:600; color:#0f4c81; position:static;}
-    .video-section p {margin-bottom:20px; color:#0b2440; text-align:justify; line-height:1.6;}
-    .video-container {position:relative; width:100%; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.1); margin-bottom:15px;}
-    .video-container iframe {position:absolute; top:0; left:0; width:100%; height:100%; border:none; border-radius:10px;}
+    .video-section {text-align:center; margin:45px auto; max-width:900px; padding:0 15px;}
+    .video-section h2 {font-size:28px; margin-bottom:18px; font-weight:600; color:#0f4c81; position:static;}
+    .video-section p {margin-bottom:22px; color:#0b2440; text-align:justify; line-height:1.65;}
+    .video-container {position:relative; width:100%; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:14px; box-shadow:0 6px 16px var(--shadow); margin-bottom:20px;}
+    .video-container iframe {position:absolute; top:0; left:0; width:100%; height:100%; border:none; border-radius:14px;}
   </style>
 </head>
 <body>
@@ -174,24 +177,13 @@
         can be accessed remotely, enabling calls without an international
         subscription.
       </p>
-<!-- Add this clickable button below the video -->
-<p style="text-align:center; margin-top:20px;">
-  <a href="https://www.youtube.com/watch?v=PSv-g0SEFRc" target="_blank" 
-     style="
-       display:inline-block;
-       padding:12px 24px;
-       background: var(--accent);
-       color:#fff;
-       font-weight:600;
-       border-radius:12px;
-       text-decoration:none;
-       transition:0.3s;
-     "
-     onmouseover="this.style.background='#0f4c81';"
-     onmouseout="this.style.background='var(--accent)';">
-    Watch Demo Video
-  </a>
-</p>
+
+      <!-- Clickable Button -->
+      <p>
+        <a href="https://www.youtube.com/watch?v=PSv-g0SEFRc" target="_blank" class="cta">
+          Watch Demo Video
+        </a>
+      </p>
 
       <div class="video-container">
         <iframe 
