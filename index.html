@@ -94,6 +94,11 @@
   .skills .pill {
     background:#22334a;
     color:#fff;
+    display:inline-block;
+    margin:4px;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:14px;
   }
 
   iframe {
@@ -107,6 +112,11 @@
   .cta {
     background:var(--accent);
     color:#fff;
+    text-decoration:none;
+    padding:10px 16px;
+    border-radius:8px;
+    display:inline-block;
+    margin:12px 0;
   }
   .cta:hover {background:var(--primary);}
 </style>
@@ -124,83 +134,88 @@
 
     <section>
       <h2>Overview</h2>
-      <p>This case study examines a free residential VoIP system which comes with the FTTH connection provided by <strong>BSNL, India’s national telecom provider with over 4.36 million subscribers</strong>. The goal was to evaluate network assumptions for a residential service and verify whether remote access is possible via VPN. Testing was conducted on my own home FTTH connection and performed from Canada using secure, authorized access.</p>
-      <div class="note">Note: Sensitive configuration details and step-by-step commands are intentionally omitted for security reasons. This document focuses on methodology, observations, and professional insights.</div>
+      <p>This case study explores a unique and practical analysis of BSNL’s residential VoIP system, bundled with its Fiber-to-the-Home (FTTH) service. <strong>BSNL, India’s national telecom provider, serves over 4.36 million subscribers.</strong> The goal was to challenge the system’s local-only design assumptions and demonstrate remote access feasibility using VPN tunneling — all conducted securely from Canada via my own home network in India.</p>
+      <p>What makes this study notable is that the VoIP service was originally configured to work only with a corded landline phone connected to the BSNL modem. By reengineering the network setup, I successfully extended its functionality to a mobile VoIP client across continents — without breaching any security boundaries.</p>
     </section>
 
     <section>
       <h2>Objective</h2>
       <ul>
-        <li>Evaluate assumptions of a residential VoIP system that uses private IP addressing.</li>
-        <li>Test remote access feasibility despite private-IP-only restrictions.</li>
-        <li>Document practical lessons in network security and remote connectivity.</li>
+        <li>Evaluate the assumptions behind BSNL’s residential VoIP system, which relies on private IP addressing and local-only access.</li>
+        <li>Test whether remote access is possible using VPN tunneling.</li>
+        <li>Demonstrate how a mobile device outside India can register and use the VoIP service as if it were local.</li>
+        <li>Document practical lessons in network design, security, and remote connectivity.</li>
       </ul>
     </section>
 
     <section>
       <h2>Scope</h2>
-      <p>Testing was limited to my own home network. No BSNL internal infrastructure, other customers' devices, or privileged systems were accessed. Remote access was simulated using a VPN connection to the home router.</p>
+      <p>All testing was strictly limited to my personal FTTH connection in India. No BSNL internal infrastructure, customer data, or privileged systems were accessed. Remote access was simulated using a secure VPN tunnel to my home router.</p>
     </section>
 
     <section>
-      <h2>Network Architecture (safe overview)</h2>
-      <pre class="diagram">[Remote Device in Canada] --VPN--> [Home Router] --> [BSNL VoIP server] --> [Calls to Indian Mobile Numbers]</pre>
-      <p>This diagram illustrates the traffic flow without exposing IPs or credentials.</p>
+      <h2>Network Architecture (Safe Overview)</h2>
+      <pre class="diagram">[Remote Device in Canada] --VPN--> [Home Router in India] --> [BSNL VoIP Server] --> [Calls to Indian Mobile Numbers]</pre>
+      <p>This diagram illustrates the traffic flow without exposing IPs, credentials, or sensitive configurations.</p>
     </section>
 
     <section>
-      <h2>Methodology (detailed, non-sensitive)</h2>
+      <h2>Methodology</h2>
       <ul>
-        <li><strong>Network Analysis:</strong> Identified private IP addressing and local-access assumptions.</li>
-        <li><strong>VPN Simulation:</strong> Connected a remote device to appear as part of the home LAN.</li>
-        <li><strong>Functionality Verification:</strong> Made test calls from Canada to Indian mobile numbers using the VoIP system — all calls completed for free.</li>
-        <li><strong>Documentation:</strong> Logged anonymized connectivity, call performance, and behavioral observations to derive insights on real-world network assumptions and system behavior.</li>
+        <li><strong>Initial Setup:</strong> BSNL VoIP was originally tied to a physical corded phone via the FTTH modem.</li>
+        <li><strong>Network Analysis:</strong> Identified reliance on private IPs and local-only access assumptions.</li>
+        <li><strong>Router Reconfiguration:</strong> Enabled VPN access to simulate LAN presence from Canada.</li>
+        <li><strong>VPN Simulation:</strong> Connected my mobile device to the home network remotely.</li>
+        <li><strong>VoIP Client Registration:</strong> Successfully registered a softphone app with the BSNL VoIP server.</li>
+        <li><strong>Call Testing:</strong> Placed multiple calls to Indian mobile numbers — all completed for free.</li>
+        <li><strong>Documentation:</strong> Logged anonymized performance metrics, connectivity behavior, and security insights.</li>
       </ul>
     </section>
 
     <section>
       <h2>Key Observations</h2>
       <ul>
-        <li>The VoIP system assumes devices are only reachable from inside the home network (private IP).</li>
-        <li>A remote device connected through VPN is treated as part of the home LAN, enabling access to the VoIP device.</li>
-        <li>Residential services relying solely on private-IP assumptions may be exposed under remote-access scenarios.</li>
-        <li>Given BSNL’s large user base, this is a real-world observation with potential scale implications.</li>
+        <li>The VoIP system assumes devices are only reachable from inside the home LAN.</li>
+        <li>A remote device connected via VPN is treated as local, enabling full VoIP access.</li>
+        <li>The system does not differentiate between physical and virtual presence on the LAN.</li>
+        <li>This behavior has potential implications for millions of BSNL users relying on similar setups.</li>
       </ul>
     </section>
 
     <section>
       <h2>Security Implications</h2>
-      <p>Designers should not assume "local-only" equals "secure-by-default." Practical testing shows remote-access methods (like VPNs) can render private-IP restrictions ineffective. Consider validating access assumptions and applying layered controls where appropriate.</p>
+      <p>This test highlights a critical design oversight: assuming that private IP access equals security. VPN tunneling can bypass such assumptions, exposing services to remote use — or abuse — if not properly secured. Designers should implement layered access controls and validate network boundaries beyond IP scope.</p>
     </section>
 
     <section>
       <h2>Skills Demonstrated</h2>
       <div class="skills">
-        <span class="pill">VoIP Analysis</span>
-        <span class="pill">VPN Configuration</span>
+        <span class="pill">VoIP System Analysis</span>
+        <span class="pill">VPN Configuration & Routing</span>
         <span class="pill">Network Troubleshooting</span>
         <span class="pill">Security Assessment</span>
         <span class="pill">Technical Documentation</span>
+        <span class="pill">Real-world Exploit Simulation</span>
       </div>
     </section>
 
     <section>
       <h2>Outcome</h2>
-      <p>This project demonstrates hands-on ability to test, analyze, and document a residential VoIP system safely. It highlights how private-IP-only assumptions can fail, showing that remote access enabled <strong>free calls from Canada to Indian mobile numbers</strong>. These observations are highly relevant to network engineers and cybersecurity professionals analyzing system assumptions and real-world network behavior.</p>
+      <p>This project showcases my ability to creatively re-engineer a residential telecom setup and uncover hidden capabilities. By simulating local presence from Canada, I enabled <strong>free domestic calls to Indian numbers</strong> — bypassing international calling restrictions entirely. The findings are relevant to telecom engineers, cybersecurity professionals, and anyone interested in practical network behavior.</p>
     </section>
- <div class="note">
-    This is a serious security risk if not properly managed — especially since BSNL has millions of users.
- </div>
+
     <section class="video-section">
       <h2>Demo Video</h2>
       <p>
-        The following video demonstrates the test scenario in action: verifying my
-        location in Canada, connecting through VPN to my home network in India,
-        registering with the BSNL VoIP server, and successfully placing a call to
-        an Indian mobile number. This confirms that the residential VoIP service
-        can be accessed remotely, enabling calls without an international
-        subscription.
+        The following video demonstrates the full scenario:
       </p>
+      <ul>
+        <li>Verifying my location in Canada</li>
+        <li>Establishing a VPN tunnel to my home router in India</li>
+        <li>Registering with the BSNL VoIP server</li>
+        <li>Successfully placing a call to an Indian mobile number</li>
+      </ul>
+      <p>This confirms that BSNL’s residential VoIP service can be accessed remotely — enabling free calls without an international subscription.</p>
 
       <!-- Clickable Button -->
       <p>
