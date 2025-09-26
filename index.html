@@ -9,8 +9,8 @@
     --primary:#4f8ef7;
     --secondary:#1e3a5f;
     --muted:#a0a0a0;
-    --bg:#0b1520;            /* Dark background */
-    --card-bg:#1b2735;       /* Card/container background */
+    --bg:#0b1520;
+    --card-bg:#1b2735;
     --accent:#4f8ef7;
     --note-bg:#2a3647;
     --note-border:#ffcc00;
@@ -26,7 +26,7 @@
     touch-action: pan-y;
     font-family:'Segoe UI',Roboto,Arial,sans-serif;
     line-height:1.7;
-    color:#e4e8f0;            /* Light text */
+    color:#e4e8f0;
     background:var(--bg);
     text-align:justify;
   }
@@ -35,7 +35,7 @@
     max-width:960px;
     margin:40px auto;
     padding:32px;
-    background:var(--card-bg); /* Dark card background */
+    background:var(--card-bg);
     border-radius:16px;
     box-shadow:0 8px 32px rgba(0,0,0,0.5);
     border-top:4px solid var(--primary);
@@ -95,10 +95,10 @@
     background:#22334a;
     color:#fff;
     display:inline-block;
-    margin:4px;
+    margin:4px 6px 4px 0;
     padding:6px 12px;
     border-radius:20px;
-    font-size:14px;
+    font-size:13px;
   }
 
   iframe {
@@ -114,7 +114,7 @@
     color:#fff;
     text-decoration:none;
     padding:10px 16px;
-    border-radius:8px;
+    border-radius:6px;
     display:inline-block;
     margin:12px 0;
   }
@@ -201,21 +201,21 @@
 
     <section>
       <h2>Outcome</h2>
-      <p>This project showcases my ability to creatively re-engineer a residential telecom setup and uncover hidden capabilities. By simulating local presence from Canada, I enabled <strong>free domestic calls to Indian numbers</strong> — bypassing international calling restrictions entirely. The findings are relevant to telecom engineers, cybersecurity professionals, and anyone interested in practical network behavior.</p>
+      <p>This project showcases my ability to creatively re-engineer a residential telecom setup and uncover hidden capabilities. By simulating local presence from Canada, I enabled free domestic calls to Indian numbers — bypassing international calling restrictions entirely. The findings are relevant to telecom engineers, cybersecurity professionals, and anyone interested in practical network behavior.</p>
     </section>
 
     <section class="video-section">
       <h2>Demo Video</h2>
       <p>
         The following video demonstrates the full scenario:
+        <ul>
+          <li>Verifying my location in Canada</li>
+          <li>Establishing a VPN tunnel to my home router in India</li>
+          <li>Registering with the BSNL VoIP server</li>
+          <li>Successfully placing a call to an Indian mobile number</li>
+        </ul>
+        This confirms that BSNL’s residential VoIP service can be accessed remotely — enabling free calls without an international subscription.
       </p>
-      <ul>
-        <li>Verifying my location in Canada</li>
-        <li>Establishing a VPN tunnel to my home router in India</li>
-        <li>Registering with the BSNL VoIP server</li>
-        <li>Successfully placing a call to an Indian mobile number</li>
-      </ul>
-      <p>This confirms that BSNL’s residential VoIP service can be accessed remotely — enabling free calls without an international subscription.</p>
 
       <!-- Clickable Button -->
       <p>
